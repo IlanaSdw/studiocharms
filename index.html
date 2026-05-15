@@ -40,7 +40,6 @@
       z-index: 0;
     }
 
-    /* ── Header ── */
     header {
       position: relative;
       z-index: 10;
@@ -66,7 +65,6 @@
       font-style: italic;
     }
 
-    /* ── Hero ── */
     .hero {
       position: relative;
       z-index: 10;
@@ -91,7 +89,6 @@
       letter-spacing: 0.05em;
     }
 
-    /* ── Section title ── */
     .section-header {
       position: relative;
       z-index: 10;
@@ -106,7 +103,6 @@
       letter-spacing: 0.06em;
     }
 
-    /* ── Grid ── */
     .catalogue {
       position: relative;
       z-index: 10;
@@ -148,10 +144,7 @@
       aspect-ratio: 1 / 1;
       position: relative;
       overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 5rem;
+      background: var(--cream);
     }
 
     .product-img img {
@@ -159,6 +152,7 @@
       height: 100%;
       object-fit: cover;
       transition: transform 0.5s ease;
+      display: block;
     }
 
     .product-card:hover .product-img img {
@@ -175,6 +169,7 @@
       padding: 4px 10px;
       border-radius: 2px;
       font-style: normal;
+      z-index: 2;
     }
 
     .badge-new { background: var(--forest); color: var(--cream); }
@@ -256,7 +251,6 @@
       flex-shrink: 0;
     }
 
-    /* ── Footer ── */
     footer {
       position: relative;
       z-index: 10;
@@ -310,7 +304,6 @@
       line-height: 1.8;
     }
 
-    /* ── Responsive ── */
     @media (max-width: 900px) {
       header { padding: 24px 30px; }
       .catalogue { grid-template-columns: repeat(2, 1fr); padding: 0 24px 80px; }
@@ -344,101 +337,106 @@
 
   <div class="catalogue">
 
+    <!-- Produit 1 -->
     <div class="product-card">
-      <div class="product-img" style="background:#e8f0e8;">
+      <div class="product-img">
         <span class="badge badge-new">New</span>
-        🐻
-        <!-- Replace with: <img src="YOUR_IMAGE_URL" alt="Forest Spirit Plush Keychain"> -->
+        <img src="img1.png" alt="Bear's Milk Tea Keychain">
       </div>
       <div class="product-info">
-        <h2 class="product-name">Forest Spirit Plush Keychain</h2>
-        <p class="product-desc">Soft plush keychain with a gentle forest spirit feel. Perfect for any bag.</p>
+        <h2 class="product-name">Bear's Milk Tea Keychain</h2>
+        <p class="product-desc">Adorable milk tea bottle charm with a tiny bear inside and a golden bell. So kawaii!</p>
         <div class="product-footer">
-          <div class="product-price">~€8.99 <small>on Amazon</small></div>
-          <a class="buy-btn" href="PASTE_YOUR_AFFILIATE_LINK_HERE" target="_blank" rel="nofollow sponsored">
+          <div class="product-price">on Amazon <small></small></div>
+          <a class="buy-btn" href="https://amzn.to/4tCQUdo" target="_blank" rel="nofollow sponsored">
             Shop <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
         </div>
       </div>
     </div>
 
+    <!-- Produit 2 -->
     <div class="product-card">
-      <div class="product-img" style="background:#f0ece4;">
+      <div class="product-img">
         <span class="badge badge-fav">Fav ♥</span>
-        🌱
+        <img src="img2.png" alt="Black Cat Plush Charm">
       </div>
       <div class="product-info">
-        <h2 class="product-name">Mini Spirit Resin Charm</h2>
-        <p class="product-desc">Tiny white resin charm with incredible detail. Small but oh so cute!</p>
+        <h2 class="product-name">Black Cat Plush Charm</h2>
+        <p class="product-desc">Fluffy black cat plush keychain holding a little fish. Big green eyes, pure cuteness.</p>
         <div class="product-footer">
-          <div class="product-price">~€6.50 <small>on Amazon</small></div>
-          <a class="buy-btn" href="PASTE_YOUR_AFFILIATE_LINK_HERE" target="_blank" rel="nofollow sponsored">
+          <div class="product-price">on Amazon <small></small></div>
+          <a class="buy-btn" href="https://amzn.to/4eUwpW1" target="_blank" rel="nofollow sponsored">
             Shop <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
         </div>
       </div>
     </div>
 
+    <!-- Produit 3 -->
     <div class="product-card">
-      <div class="product-img" style="background:#e8ecf4;">
-        🎭
+      <div class="product-img">
+        <img src="img3.png" alt="Calcifer Hanging Keychain">
       </div>
       <div class="product-info">
-        <h2 class="product-name">Masked Spirit Enamel Charm</h2>
-        <p class="product-desc">Glossy enamel keychain with vivid colors and a smooth, polished finish.</p>
+        <h2 class="product-name">Calcifer Hanging Keychain</h2>
+        <p class="product-desc">A fiery little Calcifer resin charm hanging from a silver swivel hook. Magic in your pocket.</p>
         <div class="product-footer">
-          <div class="product-price">~€7.90 <small>on Amazon</small></div>
-          <a class="buy-btn" href="PASTE_YOUR_AFFILIATE_LINK_HERE" target="_blank" rel="nofollow sponsored">
+          <div class="product-price">on Amazon <small></small></div>
+          <a class="buy-btn" href="https://amzn.to/437dWhE" target="_blank" rel="nofollow sponsored">
             Shop <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
         </div>
       </div>
     </div>
 
+    <!-- Produit 4 -->
     <div class="product-card">
-      <div class="product-img" style="background:#f4ece8;">
+      <div class="product-img">
+        <span class="badge badge-fav">Fav ♥</span>
+        <img src="img4.png" alt="Heart Locket Charm Keychain">
+      </div>
+      <div class="product-info">
+        <h2 class="product-name">Heart Locket Charm Keychain</h2>
+        <p class="product-desc">Silver multi-charm keychain with a heart locket, ribbon bow, stars and a magic 8 ball.</p>
+        <div class="product-footer">
+          <div class="product-price">on Amazon <small></small></div>
+          <a class="buy-btn" href="https://amzn.to/4udlmMd" target="_blank" rel="nofollow sponsored">
+            Shop <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Produit 5 -->
+    <div class="product-card">
+      <div class="product-img">
         <span class="badge badge-new">New</span>
-        🐉
+        <img src="https://m.media-amazon.com/images/I/51aNLXAhQvL._AC_SX679_.jpg" alt="My Melody Springtime Keychain">
       </div>
       <div class="product-info">
-        <h2 class="product-name">Dragon Acrylic Charm</h2>
-        <p class="product-desc">Clear acrylic charm with a majestic dragon illustration. Lightweight and vivid.</p>
+        <h2 class="product-name">My Melody Springtime Keychain</h2>
+        <p class="product-desc">Sweet My Melody charm in a pastel springtime design. A must-have for Sanrio lovers.</p>
         <div class="product-footer">
-          <div class="product-price">~€5.99 <small>on Amazon</small></div>
-          <a class="buy-btn" href="PASTE_YOUR_AFFILIATE_LINK_HERE" target="_blank" rel="nofollow sponsored">
+          <div class="product-price">on Amazon <small></small></div>
+          <a class="buy-btn" href="https://amzn.to/4uU3p5t" target="_blank" rel="nofollow sponsored">
             Shop <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
         </div>
       </div>
     </div>
 
+    <!-- Produit 6 -->
     <div class="product-card">
-      <div class="product-img" style="background:#f0e8ec;">
-        <span class="badge badge-fav">Fav ♥</span>
-        🔥
+      <div class="product-img">
+        <img src="img5.png" alt="Cartoon Cat in Box Keychain">
       </div>
       <div class="product-info">
-        <h2 class="product-name">Fire Spirit Mini Plush</h2>
-        <p class="product-desc">Adorable mini plush fire spirit with a silver ring. An instant favourite.</p>
+        <h2 class="product-name">Cartoon Cat in Box Keychain</h2>
+        <p class="product-desc">Set of 4 mini cats peeking out of cardboard boxes. Choose your favourite colour!</p>
         <div class="product-footer">
-          <div class="product-price">~€9.99 <small>on Amazon</small></div>
-          <a class="buy-btn" href="PASTE_YOUR_AFFILIATE_LINK_HERE" target="_blank" rel="nofollow sponsored">
-            Shop <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <div class="product-card">
-      <div class="product-img" style="background:#eaf0e8;">
-        🌿
-      </div>
-      <div class="product-info">
-        <h2 class="product-name">Forest Spirit Bell Charm</h2>
-        <p class="product-desc">White resin forest spirit with a tiny bell that chimes softly when it moves.</p>
-        <div class="product-footer">
-          <div class="product-price">~€7.50 <small>on Amazon</small></div>
-          <a class="buy-btn" href="PASTE_YOUR_AFFILIATE_LINK_HERE" target="_blank" rel="nofollow sponsored">
+          <div class="product-price">on Amazon <small></small></div>
+          <a class="buy-btn" href="https://amzn.to/4uaevDd" target="_blank" rel="nofollow sponsored">
             Shop <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
         </div>
