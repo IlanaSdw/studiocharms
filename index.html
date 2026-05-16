@@ -3,463 +3,225 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Studio Charms — Cute Keychains</title>
+  <title>About — Studio Charms</title>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --sage: #7a9e7e;
-      --sage-light: #b8d4bb;
-      --cream: #f5f0e8;
-      --cream-dark: #e8e0d0;
-      --forest: #2d4a35;
-      --forest-light: #3d5e47;
-      --dust: #c4b89a;
-      --text: #2a2a22;
-      --text-muted: #6b6b58;
-      --white: #fdfcf8;
+    :root{
+      --pink:#f2c4ce;--pink-light:#fce8ed;--pink-dark:#d4849a;
+      --sage:#7a9e7e;--sage-light:#c2d9c4;
+      --cream:#fdf6f0;--cream-dark:#ede4d8;
+      --forest:#2d4a35;--forest-light:#3d5e47;
+      --text:#2a2222;--text-muted:#7a6a6a;--white:#fffcfc;
     }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:'Cormorant Garamond',serif;background:var(--cream);color:var(--text);overflow-x:hidden;}
+    body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+      background:radial-gradient(ellipse at 10% 15%,rgba(242,196,206,0.15) 0%,transparent 50%),
+                 radial-gradient(ellipse at 90% 80%,rgba(122,158,126,0.10) 0%,transparent 50%);}
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;
+      padding:18px 60px;background:rgba(253,246,240,0.92);backdrop-filter:blur(12px);
+      border-bottom:1px solid rgba(242,196,206,0.4);}
+    .nav-logo{font-size:1.3rem;font-weight:600;letter-spacing:0.12em;color:var(--forest);text-decoration:none;}
+    .nav-links{display:flex;gap:36px;}
+    .nav-links a{font-size:0.8rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color .2s;}
+    .nav-links a:hover,.nav-links a.active{color:var(--forest);}
+    .nav-links a.active{border-bottom:1px solid var(--pink-dark);padding-bottom:2px;}
 
-    body {
-      font-family: 'Cormorant Garamond', serif;
-      background: var(--cream);
-      color: var(--text);
-      min-height: 100vh;
-      overflow-x: hidden;
+    /* ── HERO ── */
+    .about-hero{
+      position:relative;z-index:10;
+      text-align:center;padding:90px 24px 60px;
     }
-
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image:
-        radial-gradient(ellipse at 15% 20%, rgba(122,158,126,0.10) 0%, transparent 55%),
-        radial-gradient(ellipse at 85% 80%, rgba(196,184,154,0.12) 0%, transparent 55%);
-      pointer-events: none;
-      z-index: 0;
+    .about-hero h1{
+      font-size:clamp(2.8rem,6vw,5rem);font-weight:600;
+      color:var(--forest);letter-spacing:0.05em;margin-bottom:20px;
     }
-
-    header {
-      position: relative;
-      z-index: 10;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 32px 60px;
-      border-bottom: 1px solid rgba(122,158,126,0.2);
+    .about-hero h1 em{font-style:italic;color:var(--pink-dark);}
+    .about-hero p{
+      font-size:1.15rem;font-style:italic;color:var(--text-muted);
+      line-height:1.9;max-width:560px;margin:0 auto 40px;
     }
-
-    .site-name {
-      font-size: 1.4rem;
-      font-weight: 500;
-      letter-spacing: 0.14em;
-      color: var(--forest);
+    .btn-primary{
+      font-family:'Cormorant Garamond',serif;font-size:0.88rem;font-weight:500;
+      letter-spacing:0.22em;text-transform:uppercase;
+      background:var(--forest);color:var(--white);
+      padding:16px 40px;border-radius:2px;text-decoration:none;
+      transition:background .3s;display:inline-block;
     }
+    .btn-primary:hover{background:var(--forest-light);}
 
-    .header-right {
-      font-size: 0.95rem;
-      font-weight: 400;
-      letter-spacing: 0.08em;
-      color: var(--text-muted);
-      font-style: italic;
+    /* ── HOW IT WORKS ── */
+    .how{
+      position:relative;z-index:10;
+      padding:80px 60px;
+      max-width:1060px;margin:0 auto;
     }
-
-    .hero {
-      position: relative;
-      z-index: 10;
-      text-align: center;
-      padding: 90px 24px 70px;
+    .how h2{
+      font-size:clamp(1.8rem,3vw,2.4rem);font-weight:500;
+      color:var(--forest);letter-spacing:0.06em;
+      text-align:center;margin-bottom:12px;
     }
-
-    .hero-title {
-      font-size: clamp(4rem, 10vw, 7rem);
-      font-weight: 600;
-      line-height: 1.0;
-      color: var(--forest);
-      letter-spacing: 0.06em;
-      margin-bottom: 20px;
+    .how-sub{
+      text-align:center;font-size:1rem;font-style:italic;
+      color:var(--text-muted);margin-bottom:56px;
     }
-
-    .hero-sub {
-      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-      font-weight: 400;
-      font-style: italic;
-      color: var(--sage);
-      letter-spacing: 0.05em;
+    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;}
+    .step{
+      background:var(--white);border:1px solid rgba(242,196,206,0.35);
+      border-radius:8px;padding:36px 28px;text-align:center;
+      transition:transform .3s ease,box-shadow .3s ease;
     }
-
-    .section-header {
-      position: relative;
-      z-index: 10;
-      text-align: center;
-      padding: 70px 24px 36px;
+    .step:hover{transform:translateY(-4px);box-shadow:0 14px 40px rgba(45,74,53,0.08);}
+    .step-number{
+      display:inline-flex;align-items:center;justify-content:center;
+      width:44px;height:44px;border-radius:50%;
+      background:linear-gradient(135deg,var(--pink-light),var(--sage-light));
+      font-size:1.1rem;font-weight:600;color:var(--forest);
+      margin-bottom:18px;
     }
+    .step-icon{font-size:2rem;margin-bottom:14px;display:block;}
+    .step h3{font-size:1.2rem;font-weight:500;color:var(--forest);margin-bottom:12px;letter-spacing:0.04em;}
+    .step p{font-size:0.92rem;font-style:italic;color:var(--text-muted);line-height:1.8;}
 
-    .section-header h2 {
-      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
-      font-weight: 500;
-      color: var(--forest);
-      letter-spacing: 0.06em;
+    /* Divider */
+    .divider{
+      position:relative;z-index:10;
+      display:flex;align-items:center;justify-content:center;gap:20px;
+      padding:0 60px;margin-bottom:0;
     }
+    .divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--cream-dark);}
+    .divider span{font-size:1.2rem;}
 
-    .catalogue {
-      position: relative;
-      z-index: 10;
-      max-width: 1140px;
-      margin: 0 auto;
-      padding: 0 40px 100px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
+    /* ── VALUES ── */
+    .values{
+      position:relative;z-index:10;
+      background:var(--forest);
+      padding:70px 60px;text-align:center;
+      margin-top:80px;
     }
-
-    .product-card {
-      background: var(--white);
-      border: 1px solid rgba(122,158,126,0.15);
-      border-radius: 3px;
-      overflow: hidden;
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-      animation: fadeUp 0.6s ease both;
+    .values h2{
+      font-size:clamp(1.8rem,3vw,2.4rem);font-weight:500;
+      color:var(--pink-light);letter-spacing:0.06em;margin-bottom:48px;
     }
-
-    .product-card:nth-child(2) { animation-delay: 0.08s; }
-    .product-card:nth-child(3) { animation-delay: 0.16s; }
-    .product-card:nth-child(4) { animation-delay: 0.24s; }
-    .product-card:nth-child(5) { animation-delay: 0.32s; }
-    .product-card:nth-child(6) { animation-delay: 0.40s; }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
+    .values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;max-width:900px;margin:0 auto;}
+    .value-card{
+      background:rgba(255,252,252,0.07);border:1px solid rgba(242,196,206,0.18);
+      border-radius:8px;padding:32px 22px;
     }
+    .value-icon{font-size:2.2rem;margin-bottom:14px;}
+    .value-title{font-size:1.15rem;font-weight:500;color:var(--pink-light);letter-spacing:0.05em;margin-bottom:10px;}
+    .value-desc{font-size:0.9rem;font-style:italic;color:rgba(253,246,240,0.72);line-height:1.8;}
 
-    .product-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 18px 48px rgba(45,74,53,0.09);
+    /* ── FOOTER ── */
+    footer{position:relative;z-index:10;border-top:1px solid rgba(242,196,206,0.4);
+      padding:50px 60px 36px;background:rgba(45,74,53,0.03);}
+    .footer-inner{max-width:1060px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:20px;text-align:center;}
+    .footer-name{font-size:1.4rem;font-weight:500;letter-spacing:0.14em;color:var(--forest);}
+    .footer-links{display:flex;gap:28px;flex-wrap:wrap;justify-content:center;}
+    .footer-links a{font-size:0.72rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color .2s;}
+    .footer-links a:hover{color:var(--forest);}
+    .affiliate-notice{margin-top:8px;padding-top:20px;border-top:1px solid var(--cream-dark);
+      font-size:0.8rem;font-style:italic;color:var(--text-muted);max-width:620px;line-height:1.8;}
+
+    @media(max-width:900px){
+      nav{padding:16px 24px;}
+      .how{padding:60px 24px;}
+      .steps{grid-template-columns:1fr;gap:20px;}
+      .values{padding:50px 24px;}
+      .values-grid{grid-template-columns:1fr;gap:18px;}
+      footer{padding:40px 24px;}
     }
-
-    .product-img {
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      position: relative;
-      overflow: hidden;
-      background: var(--cream);
-    }
-
-    .product-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-      display: block;
-    }
-
-    .product-img.contain img {
-      object-fit: contain;
-      padding: 16px;
-    }
-
-    .product-card:hover .product-img img {
-      transform: scale(1.04);
-    }
-
-    .badge {
-      position: absolute;
-      top: 12px;
-      left: 12px;
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      padding: 4px 10px;
-      border-radius: 2px;
-      font-style: normal;
-      z-index: 2;
-    }
-
-    .badge-new { background: var(--forest); color: var(--cream); }
-    .badge-fav { background: var(--dust);   color: var(--forest); }
-
-    .product-info {
-      padding: 22px 20px 20px;
-    }
-
-    .product-name {
-      font-size: 1.25rem;
-      font-weight: 500;
-      color: var(--forest);
-      line-height: 1.3;
-      margin-bottom: 8px;
-    }
-
-    .product-desc {
-      font-size: 0.95rem;
-      font-weight: 400;
-      font-style: italic;
-      color: var(--text-muted);
-      line-height: 1.7;
-      margin-bottom: 18px;
-    }
-
-    .product-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-top: 1px solid var(--cream-dark);
-      padding-top: 14px;
-    }
-
-    .product-price {
-      font-size: 1.15rem;
-      font-weight: 500;
-      color: var(--forest);
-    }
-
-    .product-price small {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      font-weight: 400;
-      font-style: italic;
-      margin-left: 4px;
-    }
-
-    .buy-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 0.85rem;
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      font-style: normal;
-      color: var(--white);
-      background: var(--forest);
-      border: none;
-      padding: 10px 18px;
-      border-radius: 2px;
-      cursor: pointer;
-      text-decoration: none;
-      transition: background 0.3s;
-    }
-
-    .buy-btn:hover { background: var(--forest-light); }
-
-    .buy-btn svg {
-      width: 11px;
-      height: 11px;
-      stroke: currentColor;
-      fill: none;
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      flex-shrink: 0;
-    }
-
-    footer {
-      position: relative;
-      z-index: 10;
-      border-top: 1px solid rgba(122,158,126,0.2);
-      padding: 50px 60px 40px;
-      background: rgba(45,74,53,0.025);
-    }
-
-    .footer-inner {
-      max-width: 1060px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
-      text-align: center;
-    }
-
-    .footer-name {
-      font-size: 1.4rem;
-      font-weight: 500;
-      letter-spacing: 0.14em;
-      color: var(--forest);
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 28px;
-    }
-
-    .footer-links a {
-      font-size: 0.75rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      font-style: normal;
-      color: var(--text-muted);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .footer-links a:hover { color: var(--forest); }
-
-    .affiliate-notice {
-      margin-top: 8px;
-      padding-top: 20px;
-      border-top: 1px solid var(--cream-dark);
-      font-size: 0.82rem;
-      font-style: italic;
-      font-weight: 400;
-      color: var(--text-muted);
-      max-width: 620px;
-      line-height: 1.8;
-    }
-
-    @media (max-width: 900px) {
-      header { padding: 24px 30px; }
-      .catalogue { grid-template-columns: repeat(2, 1fr); padding: 0 24px 80px; }
-    }
-
-    @media (max-width: 560px) {
-      header { flex-direction: column; gap: 6px; text-align: center; padding: 20px; }
-      .hero { padding: 60px 20px 50px; }
-      .catalogue { grid-template-columns: 1fr 1fr; gap: 12px; padding: 0 14px 60px; }
-      .product-desc { display: none; }
-      footer { padding: 40px 24px 32px; }
-      .footer-links { flex-wrap: wrap; justify-content: center; gap: 16px; }
+    @media(max-width:560px){
+      .divider{padding:0 24px;}
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <span class="site-name">Studio Charms</span>
-    <span class="header-right">Handpicked cute keychains</span>
-  </header>
+  <nav>
+    <a href="index.html" class="nav-logo">Studio Charms</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="about.html" class="active">About</a>
+    </div>
+  </nav>
 
-  <div class="hero">
-    <h1 class="hero-title">Studio Charms</h1>
-    <p class="hero-sub">Little charms, big magic.</p>
+  <!-- HERO -->
+  <div class="about-hero">
+    <h1>Made with love,<br><em>curated with magic.</em></h1>
+    <a href="shop.html" class="btn-primary">Explore the Shop 🌿</a>
+    <p style="margin-top:36px;">Studio Charms is a handpicked collection of kawaii keychains & cute gadgets for people who believe the smallest things can bring the biggest joy.</p>
   </div>
 
-  <div class="section-header">
-    <h2>Explore our collection</h2>
+  <div class="divider"><span>🌸</span></div>
+
+  <!-- HOW IT WORKS -->
+  <div class="how">
+    <h2>How it works</h2>
+    <p class="how-sub">Shopping on Studio Charms is simple — here's all you need to know</p>
+    <div class="steps">
+
+      <div class="step">
+        <span class="step-icon">🔍</span>
+        <div class="step-number">1</div>
+        <h3>Browse the collection</h3>
+        <p>Explore our handpicked selection of keychains and kawaii gadgets. Use the filters on the Shop page to find exactly your vibe.</p>
+      </div>
+
+      <div class="step">
+        <span class="step-icon">🛒</span>
+        <div class="step-number">2</div>
+        <h3>Click & shop safely</h3>
+        <p>Each "Shop" button takes you directly to Amazon or AliExpress — trusted platforms with secure checkout, buyer protection and easy returns.</p>
+      </div>
+
+      <div class="step">
+        <span class="step-icon">📦</span>
+        <div class="step-number">3</div>
+        <h3>Receive your charm</h3>
+        <p>Amazon products ship fast worldwide. AliExpress items may take 2–4 weeks from Asia — always worth the wait for the price!</p>
+      </div>
+
+    </div>
   </div>
 
-  <div class="catalogue">
-
-    <!-- Produit 1 -->
-    <div class="product-card">
-      <div class="product-img">
-        <span class="badge badge-new">New</span>
-        <img src="img1.png" alt="Bear's Milk Tea Keychain">
+  <!-- VALUES -->
+  <div class="values">
+    <h2>What we stand for</h2>
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-icon">🌸</div>
+        <div class="value-title">Handpicked with care</div>
+        <div class="value-desc">Every product is chosen personally. No random listings — only things I genuinely love.</div>
       </div>
-      <div class="product-info">
-        <h2 class="product-name">Bear's Milk Tea Keychain</h2>
-        <p class="product-desc">Adorable milk tea bottle charm with a tiny bear inside and a golden bell. So kawaii!</p>
-        <div class="product-footer">
-          <div class="product-price">on Amazon <small></small></div>
-          <a class="buy-btn" href="https://amzn.to/4tCQUdo" target="_blank" rel="nofollow sponsored">
-            Shop <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-        </div>
+      <div class="value-card">
+        <div class="value-icon">🌍</div>
+        <div class="value-title">Accessible worldwide</div>
+        <div class="value-desc">All products ship internationally via Amazon or AliExpress, no matter where you are.</div>
       </div>
-    </div>
-
-    <!-- Produit 2 -->
-    <div class="product-card">
-      <div class="product-img">
-        <span class="badge badge-fav">Fav ♥</span>
-        <img src="img2.png" alt="Black Cat Plush Charm">
-      </div>
-      <div class="product-info">
-        <h2 class="product-name">Black Cat Plush Charm</h2>
-        <p class="product-desc">Fluffy black cat plush keychain holding a little fish. Big green eyes, pure cuteness.</p>
-        <div class="product-footer">
-          <div class="product-price">on Amazon <small></small></div>
-          <a class="buy-btn" href="https://amzn.to/4eUwpW1" target="_blank" rel="nofollow sponsored">
-            Shop <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-        </div>
+      <div class="value-card">
+        <div class="value-icon">✨</div>
+        <div class="value-title">Always honest</div>
+        <div class="value-desc">Affiliate links are clearly disclosed. Your trust matters more than any commission.</div>
       </div>
     </div>
-
-    <!-- Produit 3 -->
-    <div class="product-card">
-      <div class="product-img">
-        <img src="img3.png" alt="Calcifer Hanging Keychain" style="object-fit:contain; padding:16px;">
-      </div>
-      <div class="product-info">
-        <h2 class="product-name">Calcifer Hanging Keychain</h2>
-        <p class="product-desc">A fiery little Calcifer resin charm hanging from a silver swivel hook. Magic in your pocket.</p>
-        <div class="product-footer">
-          <div class="product-price">on Amazon <small></small></div>
-          <a class="buy-btn" href="https://amzn.to/437dWhE" target="_blank" rel="nofollow sponsored">
-            Shop <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Produit 4 -->
-    <div class="product-card">
-      <div class="product-img">
-        <span class="badge badge-fav">Fav ♥</span>
-        <img src="img4.png" alt="Heart Locket Charm Keychain">
-      </div>
-      <div class="product-info">
-        <h2 class="product-name">Heart Locket Charm Keychain</h2>
-        <p class="product-desc">Silver multi-charm keychain with a heart locket, ribbon bow, stars and a magic 8 ball.</p>
-        <div class="product-footer">
-          <div class="product-price">on Amazon <small></small></div>
-          <a class="buy-btn" href="https://amzn.to/4udlmMd" target="_blank" rel="nofollow sponsored">
-            Shop <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Produit 5 -->
-    <div class="product-card">
-      <div class="product-img">
-        <span class="badge badge-new">New</span>
-        <img src="https://m.media-amazon.com/images/I/51aNLXAhQvL._AC_SX679_.jpg" alt="My Melody Springtime Keychain" style="object-fit:contain; padding:16px;">
-      </div>
-      <div class="product-info">
-        <h2 class="product-name">My Melody Springtime Keychain</h2>
-        <p class="product-desc">Sweet My Melody charm in a pastel springtime design. A must-have for Sanrio lovers.</p>
-        <div class="product-footer">
-          <div class="product-price">on Amazon <small></small></div>
-          <a class="buy-btn" href="https://amzn.to/4uU3p5t" target="_blank" rel="nofollow sponsored">
-            Shop <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Produit 6 -->
-    <div class="product-card">
-      <div class="product-img">
-        <img src="img5.png" alt="Cartoon Cat in Box Keychain">
-      </div>
-      <div class="product-info">
-        <h2 class="product-name">Cartoon Cat in Box Keychain</h2>
-        <p class="product-desc">Set of 4 mini cats peeking out of cardboard boxes. Choose your favourite colour!</p>
-        <div class="product-footer">
-          <div class="product-price">on Amazon <small></small></div>
-          <a class="buy-btn" href="https://amzn.to/4uaevDd" target="_blank" rel="nofollow sponsored">
-            Shop <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-        </div>
-      </div>
-    </div>
-
   </div>
 
   <footer>
     <div class="footer-inner">
       <span class="footer-name">Studio Charms</span>
       <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="about.html">About</a>
         <a href="#">Pinterest</a>
         <a href="#">Contact</a>
         <a href="#">Legal notice</a>
       </div>
       <p class="affiliate-notice">
-        This site contains affiliate links. As an Amazon Associate, I earn a small commission from qualifying purchases at no extra cost to you. All products are sold and fulfilled by Amazon merchants. Thank you for your support 🌿
+        This site contains affiliate links. As an Amazon Associate & AliExpress affiliate, I earn a small commission from qualifying purchases at no extra cost to you. Thank you for your support 🌿
       </p>
     </div>
   </footer>
