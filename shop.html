@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop — Studio Charms</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --pink:#f2c4ce;--pink-light:#fce8ed;--pink-dark:#d4849a;
+      --sage:#7a9e7e;--sage-light:#c2d9c4;
+      --cream:#fdf6f0;--cream-dark:#ede4d8;
+      --forest:#2d4a35;--forest-light:#3d5e47;
+      --text:#2a2222;--text-muted:#7a6a6a;--white:#fffcfc;
+    }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:'Cormorant Garamond',serif;background:var(--cream);color:var(--text);overflow-x:hidden;}
+    body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+      background:radial-gradient(ellipse at 10% 15%,rgba(242,196,206,0.15) 0%,transparent 50%),
+                 radial-gradient(ellipse at 90% 80%,rgba(122,158,126,0.10) 0%,transparent 50%);}
+    nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;
+      padding:18px 60px;background:rgba(253,246,240,0.92);backdrop-filter:blur(12px);
+      border-bottom:1px solid rgba(242,196,206,0.4);}
+    .nav-logo{font-size:1.3rem;font-weight:600;letter-spacing:0.12em;color:var(--forest);text-decoration:none;}
+    .nav-links{display:flex;gap:36px;}
+    .nav-links a{font-size:0.8rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color .2s;}
+    .nav-links a:hover,.nav-links a.active{color:var(--forest);}
+    .nav-links a.active{border-bottom:1px solid var(--pink-dark);padding-bottom:2px;}
+    .page-header{position:relative;z-index:10;text-align:center;padding:70px 24px 50px;}
+    .page-header h1{font-size:clamp(2.5rem,5vw,4rem);font-weight:600;color:var(--forest);letter-spacing:0.06em;margin-bottom:12px;}
+    .page-header p{font-size:1.05rem;font-style:italic;color:var(--text-muted);}
+    .filters{position:relative;z-index:10;display:flex;justify-content:center;flex-wrap:wrap;gap:10px;padding:0 24px 48px;}
+    .filter-btn{font-family:'Cormorant Garamond',serif;font-size:0.78rem;letter-spacing:0.2em;
+      text-transform:uppercase;color:var(--text-muted);background:transparent;border:1px solid var(--cream-dark);
+      padding:9px 22px;border-radius:20px;cursor:pointer;transition:all .3s;}
+    .filter-btn:hover,.filter-btn.active{background:var(--forest);color:var(--white);border-color:var(--forest);}
+    .catalogue{position:relative;z-index:10;max-width:1140px;margin:0 auto;padding:0 40px 100px;
+      display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+    .product-card{background:var(--white);border:1px solid rgba(242,196,206,0.3);border-radius:8px;
+      overflow:hidden;transition:transform .4s ease,box-shadow .4s ease;animation:fadeUp .6s ease both;}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+    .product-card:hover{transform:translateY(-5px);box-shadow:0 18px 48px rgba(45,74,53,0.09);}
+    .product-img{width:100%;aspect-ratio:1;overflow:hidden;position:relative;background:var(--pink-light);}
+    .product-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;}
+    .product-card:hover .product-img img{transform:scale(1.04);}
+    .platform-badge{position:absolute;bottom:10px;right:10px;font-size:0.6rem;letter-spacing:0.15em;
+      text-transform:uppercase;padding:4px 10px;border-radius:20px;font-style:normal;font-weight:500;}
+    .badge-amazon{background:#ff9900;color:#fff;}
+    .badge-ali{background:#e62e04;color:#fff;}
+    .top-badge{position:absolute;top:12px;left:12px;font-size:0.62rem;letter-spacing:0.2em;
+      text-transform:uppercase;padding:4px 10px;border-radius:2px;}
+    .badge-new{background:var(--forest);color:var(--cream);}
+    .badge-fav{background:var(--pink-dark);color:var(--white);}
+    .product-info{padding:20px 18px 18px;}
+    .product-name{font-size:1.15rem;font-weight:500;color:var(--forest);line-height:1.3;margin-bottom:8px;}
+    .product-desc{font-size:0.9rem;font-style:italic;color:var(--text-muted);line-height:1.7;margin-bottom:16px;}
+    .product-footer{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--cream-dark);padding-top:14px;}
+    .product-price{font-size:1.1rem;font-weight:500;color:var(--forest);}
+    .buy-btn{display:inline-flex;align-items:center;gap:7px;font-family:'Cormorant Garamond',serif;
+      font-size:0.82rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;
+      color:var(--white);background:var(--forest);border:none;padding:10px 16px;border-radius:2px;
+      cursor:pointer;text-decoration:none;transition:background .3s;}
+    .buy-btn:hover{background:var(--forest-light);}
+    .buy-btn svg{width:11px;height:11px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
+    .empty{grid-column:1/-1;text-align:center;padding:60px;font-style:italic;color:var(--text-muted);}
+    footer{position:relative;z-index:10;border-top:1px solid rgba(242,196,206,0.4);padding:50px 60px 36px;background:rgba(45,74,53,0.03);}
+    .footer-inner{max-width:1060px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:20px;text-align:center;}
+    .footer-name{font-size:1.4rem;font-weight:500;letter-spacing:0.14em;color:var(--forest);}
+    .footer-links{display:flex;gap:28px;flex-wrap:wrap;justify-content:center;}
+    .footer-links a{font-size:0.72rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color .2s;}
+    .footer-links a:hover{color:var(--forest);}
+    .affiliate-notice{margin-top:8px;padding-top:20px;border-top:1px solid var(--cream-dark);
+      font-size:0.8rem;font-style:italic;color:var(--text-muted);max-width:620px;line-height:1.8;}
+    @media(max-width:900px){nav{padding:16px 24px;}.catalogue{grid-template-columns:repeat(2,1fr);padding:0 24px 80px;}}
+    @media(max-width:560px){.catalogue{grid-template-columns:1fr 1fr;gap:12px;padding:0 14px 60px;}.product-desc{display:none;}footer{padding:40px 24px;}}
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">Studio Charms</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="shop.html" class="active">Shop</a>
+      <a href="about.html">About</a>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <h1>Our Collection</h1>
+    <p>Kawaii keychains & cute gadgets — handpicked with love 🌸</p>
+  </div>
+
+  <div class="filters">
+    <button class="filter-btn active" onclick="filterCards('all',this)">All</button>
+    <button class="filter-btn" onclick="filterCards('keychain',this)">Keychains</button>
+    <button class="filter-btn" onclick="filterCards('gadget',this)">Gadgets</button>
+    <button class="filter-btn" onclick="filterCards('nature',this)">Nature & Magic</button>
+    <button class="filter-btn" onclick="filterCards('hellokitty',this)">Hello Kitty 🎀</button>
+    <button class="filter-btn" onclick="filterCards('amazon',this)">Amazon</button>
+    <button class="filter-btn" onclick="filterCards('ali',this)">AliExpress</button>
+  </div>
+
+  <div id="hk-banner" style="position:relative;z-index:10;max-width:1140px;margin:0 auto 40px;padding:0 40px;">
+    <div style="background:linear-gradient(135deg,#fce8ed 0%,#e8d4f0 50%,#fce8ed 100%);border-radius:12px;padding:40px 48px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;">
+      <div>
+        <p style="font-size:0.72rem;letter-spacing:0.3em;text-transform:uppercase;color:#d4849a;margin-bottom:10px;">✨ Featured Collection</p>
+        <h2 style="font-size:clamp(1.8rem,3vw,2.6rem);font-weight:600;color:#2d4a35;letter-spacing:0.05em;margin-bottom:10px;">Hello Kitty & Friends</h2>
+        <p style="font-size:1rem;font-style:italic;color:#7a6a6a;max-width:420px;line-height:1.7;">Funko Pop! Pocket keychains from the iconic Sanrio universe — Hello Kitty, Kuromi, My Melody and more.</p>
+      </div>
+      <div style="font-size:5rem;line-height:1;">🎀</div>
+    </div>
+  </div>
+
+  <div class="catalogue" id="catalogue">
+
+    <div class="product-card" data-cat="keychain amazon">
+      <div class="product-img">
+        <span class="top-badge badge-new">New</span>
+        <img src="img1.png" alt="Bear's Milk Tea Keychain">
+        <span class="platform-badge badge-amazon">Amazon</span>
+      </div>
+      <div class="product-info">
+        <h2 class="product-name">Bear's Milk Tea Keychain</h2>
+        <p class="product-desc">Adorable milk tea bottle charm with a tiny bear inside and a golden bell.</p>
+        <div class="product-footer">
+          <div class="product-price">on Amazon</div>
+          <a class="buy-btn" href="https://amzn.to/4tCQUdo" target="_blank" rel="nofollow sponsored">Shop <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-cat="keychain amazon">
+      <div class="product-img">
+        <span class="top-badge badge-fav">Fav ♥</span>
+        <img src="img2.png" alt="Black Cat Plush Charm">
+        <span class="platform-badge badge-amazon">Amazon</span>
+      </div>
+      <div class="product-info">
+        <h2 class="product-name">Black Cat Plush Charm</h2>
+        <p class="product-desc">Fluffy black cat holding a little fish. Big green eyes, pure cuteness.</p>
+        <div class="product-footer">
+          <div class="product-price">on Amazon</div>
+          <a class="buy-btn" href="https://amzn.to/4eUwpW1" target="_blank" rel="nofollow sponsored">Shop <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-cat="nature amazon">
+      <div class="product-img">
+        <img src="img3.png" alt="Calcifer Hanging Keychain" style="object-fit:contain;padding:16px;">
+        <span class="platform-badge badge-amazon">Amazon</span>
+      </div>
+      <div class="product-info">
+        <h2 class="product-name">Calcifer Hanging Keychain</h2>
+        <p class="product-desc">A fiery little Calcifer resin charm. Magic in your pocket.</p>
+        <div class="product-footer">
+          <div class="product-price">on Amazon</div>
+          <a class="buy-btn" href="https://amzn.to/437dWhE" target="_blank" rel="nofollow sponsored">Shop <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-cat="keychain amazon">
+      <div class="product-img">
+        <span class="top-badge badge-fav">Fav ♥</span>
+        <img src="img4.png" alt="Heart Locket Charm Keychain">
+        <span class="platform-badge badge-amazon">Amazon</span>
+      </div>
+      <div class="product-info">
+        <h2 class="product-name">Heart Locket Charm Keychain</h2>
+        <p class="product-desc">Silver multi-charm keychain with heart locket, ribbon bow and stars.</p>
+        <div class="product-footer">
+          <div class="product-price">on Amazon</div>
+          <a class="buy-btn" href="https://amzn.to/4udlmMd" target="_blank" rel="nofollow sponsored">Shop <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-cat="gadget amazon">
+      <div class="product-img">
+        <span class="top-badge badge-new">New</span>
+        <img src="https://m.media-amazon.com/images/I/51aNLXAhQvL._AC_SX679_.jpg" alt="My Melody Springtime" style="object-fit:contain;padding:16px;">
+        <span class="platform-badge badge-amazon">Amazon</span>
+      </div>
+      <div class="product-info">
+        <h2 class="product-name">My Melody Springtime Keychain</h2>
+        <p class="product-desc">Sweet My Melody charm in a pastel springtime design. A Sanrio must-have.</p>
+        <div class="product-footer">
+          <div class="product-price">on Amazon</div>
+          <a class="buy-btn" href="https://amzn.to/4uU3p5t" target="_blank" rel="nofollow sponsored">Shop <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-cat="gadget amazon">
+      <div class="product-img">
+        <img src="img5.png" alt="Cartoon Cat in Box Keychain">
+        <span class="platform-badge badge-amazon">Amazon</span>
+      </div>
+      <div class="product-info">
+        <h2 class="product-name">Cartoon Cat in Box Keychain</h2>
+        <p class="product-desc">Set of 4 mini cats peeking out of cardboard boxes. Choose your colour!</p>
+        <div class="product-footer">
+          <div class="product-price">on Amazon</div>
+          <a class="buy-btn" href="https://amzn.to/4uaevDd" target="_blank" rel="nofollow sponsored">Shop <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-cat="hellokitty keychain amazon">
+      <div class="product-img">
+        <span class="top-badge badge-new">New</span>
+        <img src="img6.png" alt="Hello Kitty Funko Pop Keychain" style="object-fit:contain;padding:12px;">
+        <span class="platform-badge badge-amazon">Amazon</span>
+      </div>
+      <div class="product-info">
+        <h2 class="product-name">Hello Kitty Pocket Pop! Keychain</h2>
+        <p class="product-desc">Iconic Hello Kitty in a collectible Funko vinyl figure. Perfect gift for any Sanrio fan.</p>
+        <div class="product-footer">
+          <div class="product-price">on Amazon</div>
+          <a class="buy-btn" href="https://amzn.to/4dpErDK" target="_blank" rel="nofollow sponsored">Shop <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-cat="hellokitty keychain amazon">
+      <div class="product-img">
+        <span class="top-badge badge-fav">Fav ♥</span>
+        <img src="img7.png" alt="Kuromi Funko Pop Keychain" style="object-fit:contain;padding:12px;">
+        <span class="platform-badge badge-amazon">Amazon</span>
+      </div>
+      <div class="product-info">
+        <h2 class="product-name">Kuromi Pocket Pop! Keychain</h2>
+        <p class="product-desc">Edgy little Kuromi in purple — a Funko vinyl collectible for dark kawaii lovers.</p>
+        <div class="product-footer">
+          <div class="product-price">on Amazon</div>
+          <a class="buy-btn" href="https://amzn.to/42Gr4Ks" target="_blank" rel="nofollow sponsored">Shop <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-cat="hellokitty keychain amazon">
+      <div class="product-img">
+        <img src="https://m.media-amazon.com/images/I/61nkVrahzUL._AC_SX679_.jpg" alt="Kuromi Vinyl Keyring" style="object-fit:contain;padding:12px;">
+        <span class="platform-badge badge-amazon">Amazon</span>
+      </div>
+      <div class="product-info">
+        <h2 class="product-name">Kuromi Vinyl Keyring</h2>
+        <p class="product-desc">Great stocking filler or gift idea for anime and Sanrio fans.</p>
+        <div class="product-footer">
+          <div class="product-price">on Amazon</div>
+          <a class="buy-btn" href="https://amzn.to/4dh8FKs" target="_blank" rel="nofollow sponsored">Shop <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-cat="hellokitty gadget amazon">
+      <div class="product-img">
+        <span class="top-badge badge-new">New</span>
+        <img src="https://m.media-amazon.com/images/I/71608vSxjpL._AC_SX679_.jpg" alt="Sanrio Funko Set" style="object-fit:contain;padding:12px;">
+        <span class="platform-badge badge-amazon">Amazon</span>
+      </div>
+      <div class="product-info">
+        <h2 class="product-name">Sanrio Funko Set — Kuromi & My Melody</h2>
+        <p class="product-desc">Collectible vinyl set featuring Kuromi & My Melody 20th Anniversary edition.</p>
+        <div class="product-footer">
+          <div class="product-price">on Amazon</div>
+          <a class="buy-btn" href="https://amzn.to/4wAWGyW" target="_blank" rel="nofollow sponsored">Shop <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-cat="hellokitty gadget amazon">
+      <div class="product-img">
+        <img src="https://m.media-amazon.com/images/I/61Cl8KO0xzL._AC_SX679_.jpg" alt="Hello Kitty Vinyl Figure" style="object-fit:contain;padding:12px;">
+        <span class="platform-badge badge-amazon">Amazon</span>
+      </div>
+      <div class="product-info">
+        <h2 class="product-name">Hello Kitty Collectible Vinyl Figure</h2>
+        <p class="product-desc">Classic Hello Kitty Funko vinyl — timeless collectible for kids and adults alike.</p>
+        <div class="product-footer">
+          <div class="product-price">on Amazon</div>
+          <a class="buy-btn" href="https://amzn.to/4uZxsbX" target="_blank" rel="nofollow sponsored">Shop <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-cat="gadget ali">
+      <div class="product-img" style="background:linear-gradient(135deg,#fce8ed,#c2d9c4);display:flex;align-items:center;justify-content:center;font-size:3.5rem;">
+        🌸
+        <span class="platform-badge badge-ali">AliExpress</span>
+      </div>
+      <div class="product-info">
+        <h2 class="product-name">Coming Soon</h2>
+        <p class="product-desc">New kawaii gadget dropping soon. Stay tuned on our Pinterest!</p>
+        <div class="product-footer">
+          <div class="product-price">AliExpress</div>
+          <a class="buy-btn" href="#" style="opacity:0.5;cursor:not-allowed;">Soon</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-name">Studio Charms</span>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="about.html">About</a>
+        <a href="#">Pinterest</a>
+        <a href="#">Contact</a>
+        <a href="#">Legal notice</a>
+      </div>
+      <p class="affiliate-notice">
+        This site contains affiliate links. As an Amazon Associate & AliExpress affiliate, I earn a small commission from qualifying purchases at no extra cost to you. Thank you for your support 🌿
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    function filterCards(cat, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      if(btn) btn.classList.add('active');
+      const cards = document.querySelectorAll('.product-card');
+      let visible = 0;
+      cards.forEach(card => {
+        const cats = card.dataset.cat || '';
+        const match = cat === 'all' || cats.includes(cat);
+        card.style.display = match ? 'block' : 'none';
+        if(match) visible++;
+      });
+      let empty = document.querySelector('.empty');
+      if(visible === 0) {
+        if(!empty) {
+          empty = document.createElement('div');
+          empty.className = 'empty';
+          empty.textContent = 'No products in this category yet. Check back soon! 🌸';
+          document.getElementById('catalogue').appendChild(empty);
+        }
+      } else if(empty) empty.remove();
+    }
+  </script>
+</body>
+</html>
